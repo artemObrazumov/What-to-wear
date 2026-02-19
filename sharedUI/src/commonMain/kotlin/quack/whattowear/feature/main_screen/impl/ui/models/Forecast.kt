@@ -1,5 +1,6 @@
 package quack.whattowear.feature.main_screen.impl.ui.models
 
+import org.jetbrains.compose.resources.StringResource
 import quack.whattowear.feature.main_screen.impl.domain.models.Forecast
 
 class ForecastUI(
@@ -8,9 +9,8 @@ class ForecastUI(
   val wind: String,
   val windDirection: String,
   val humidity: String,
-  val humidityMeasurement: String,
   val pressure: String,
-  val pressureMeasurement: String,
+  val pressureMeasurement: StringResource,
 )
 
 fun Forecast.toUI(): ForecastUI = ForecastUI(
@@ -19,7 +19,6 @@ fun Forecast.toUI(): ForecastUI = ForecastUI(
   wind = wind.value.toString(),
   windDirection = wind.label,
   humidity = humidity.value.toString(),
-  humidityMeasurement = humidity.label,
   pressure = pressure.value.toString(),
   pressureMeasurement = pressure.label,
 )

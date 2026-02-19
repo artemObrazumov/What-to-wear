@@ -1,7 +1,9 @@
 <resources>
-    <string name="cyclone">Cyclone</string>
-    <string name="open_github">Open github</string>
-    <string name="run">Run</string>
-    <string name="stop">Stop</string>
-    <string name="theme">Theme</string>
+  <string name="temperature">Фактическая температура</string>
+  <string name="feels_like">Ощущается как</string>
+  <string name="wind">Ветер</string>
+  <string name="humidity">Влажность</string>
+  <string name="pressure">Давление</string>
+  <string name="mmHg">мм.рт.ст</string>
+  <string name="mps">м/с</string>
 </resources>

@@ -5,20 +5,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
 @Composable
 fun BodyText(
   text: String,
   modifier: Modifier = Modifier,
-  fontWeight: FontWeight = FontWeight.Normal
+  fontWeight: FontWeight = FontWeight.Normal,
+  textAlign: TextAlign = TextAlign.Start
 ) {
   Text(
     text = text,
     modifier = modifier,
+    textAlign = textAlign,
     style = MaterialTheme.typography.headlineLarge.copy(
       fontWeight = fontWeight,
       fontSize = 20.sp
-    )
+    ),
+    lineHeight = 24.sp
   )
 }
