@@ -11,17 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import io.github.fletchmckee.liquid.LiquidState
 import quack.whattowear.design_system.text.BodyText
 
 @Composable
 fun LabeledBlock(
   title: String,
-  liquidState: LiquidState,
   content: @Composable ColumnScope.() -> Unit
 ) {
   LiquidContainer(
-    liquidState = liquidState,
     modifier = Modifier
       .fillMaxWidth()
       .aspectRatio(1f)

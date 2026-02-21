@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import quack.whattowear.theme.montserratFontFamily
 
 @Composable
 fun BodyText(
@@ -15,6 +16,8 @@ fun BodyText(
   fontWeight: FontWeight = FontWeight.Normal,
   textAlign: TextAlign = TextAlign.Start
 ) {
+  val fontFamily = montserratFontFamily()
+
   Text(
     text = text,
     modifier = modifier,
@@ -23,6 +26,7 @@ fun BodyText(
       fontWeight = fontWeight,
       fontSize = 20.sp
     ),
-    lineHeight = 24.sp
+    lineHeight = 24.sp,
+    fontFamily = fontFamily,
   )
 }

@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import quack.whattowear.theme.montserratFontFamily
 
 @Composable
 fun HugeText(
@@ -15,13 +16,16 @@ fun HugeText(
   fontWeight: FontWeight = FontWeight.Light,
   textAlign: TextAlign = TextAlign.Start
 ) {
+  val fontFamily = montserratFontFamily()
+
   Text(
     text = text,
     modifier = modifier,
     textAlign = textAlign,
     style = MaterialTheme.typography.headlineLarge.copy(
       fontWeight = fontWeight,
-      fontSize = 64.sp
-    )
+      fontSize = 56.sp
+    ),
+    fontFamily = fontFamily,
   )
 }

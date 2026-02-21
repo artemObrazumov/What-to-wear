@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import quack.whattowear.theme.montserratFontFamily
 
 @Composable
 fun TitleText(
@@ -15,6 +16,8 @@ fun TitleText(
   fontWeight: FontWeight = FontWeight.Medium,
   textAlign: TextAlign = TextAlign.Start
 ) {
+  val fontFamily = montserratFontFamily()
+
   Text(
     text = text,
     modifier = modifier,
@@ -22,6 +25,7 @@ fun TitleText(
     style = MaterialTheme.typography.headlineLarge.copy(
       fontWeight = fontWeight,
       fontSize = 26.sp
-    )
+    ),
+    fontFamily = fontFamily,
   )
 }

@@ -3,7 +3,6 @@ package quack.whattowear.feature.main_screen.impl.ui.components
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.style.TextAlign
-import io.github.fletchmckee.liquid.LiquidState
 import org.jetbrains.compose.resources.stringResource
 import quack.whattowear.design_system.containers.LabeledBlock
 import quack.whattowear.design_system.text.BodyText
@@ -18,13 +17,11 @@ import whattowear.sharedui.generated.resources.wind
 
 fun LazyGridScope.forecastSection(
   data: MainScreenSection.ForecastSection,
-  liquidState: LiquidState,
 ) {
   val forecast = data.forecast
   item {
     LabeledBlock(
       title = stringResource(Res.string.temperature),
-      liquidState = liquidState
     ) {
 
     }
@@ -32,7 +29,6 @@ fun LazyGridScope.forecastSection(
   item {
     LabeledBlock(
       title = stringResource(Res.string.temperature),
-      liquidState = liquidState
     ) {
       HugeTextBlock(forecast.temperature)
     }
@@ -40,7 +36,6 @@ fun LazyGridScope.forecastSection(
   item {
     LabeledBlock(
       title = stringResource(Res.string.feels_like),
-      liquidState = liquidState
     ) {
       HugeTextBlock(forecast.feelsLikeTemperature)
     }
@@ -48,7 +43,6 @@ fun LazyGridScope.forecastSection(
   item {
     LabeledBlock(
       title = stringResource(Res.string.wind),
-      liquidState = liquidState
     ) {
       HugeTextWithLabelBlock(forecast.wind, forecast.windDirection)
     }
@@ -56,7 +50,6 @@ fun LazyGridScope.forecastSection(
   item {
     LabeledBlock(
       title = stringResource(Res.string.humidity),
-      liquidState = liquidState
     ) {
       HugeTextBlock(forecast.humidity)
     }
@@ -64,7 +57,6 @@ fun LazyGridScope.forecastSection(
   item {
     LabeledBlock(
       title = stringResource(Res.string.pressure),
-      liquidState = liquidState
     ) {
       HugeTextWithLabelBlock(forecast.pressure, stringResource(forecast.pressureMeasurement))
     }

@@ -1,7 +1,9 @@
 package quack.whattowear.feature.main_screen.impl.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -11,10 +13,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import io.github.fletchmckee.liquid.LiquidState
-import io.github.fletchmckee.liquid.rememberLiquidState
 import quack.whattowear.feature.main_screen.impl.domain.models.Forecast
 import quack.whattowear.feature.main_screen.impl.domain.models.LabeledParameter
 import quack.whattowear.feature.main_screen.impl.domain.models.PercentageParameter
@@ -28,27 +29,25 @@ import whattowear.sharedui.generated.resources.Res
 import whattowear.sharedui.generated.resources.mmHg
 
 @Composable
-fun MainScreenRoot(
+fun MainScreen(
   viewModel: MainScreenViewModel = viewModel()
 ) {
   val state by viewModel.state.collectAsStateWithLifecycle()
 
-  MainScreenScreen(
+  MainScreenContent(
     state = state,
     onAction = viewModel::onAction
   )
 }
 
 @Composable
-fun MainScreenScreen(
+fun MainScreenContent(
   state: MainScreenState,
   onAction: (MainScreenAction) -> Unit,
 ) {
-  val liquidState = rememberLiquidState()
-
   when (state) {
     is MainScreenState.Content -> {
-      MainScreenContentState(state, liquidState)
+      MainScreenContentState(state)
     }
 
     is MainScreenState.Error -> {}
@@ -67,9 +66,11 @@ fun MainScreenScreen(
 @Composable
 fun MainScreenContentState(
   state: MainScreenState.Content,
-  liquidState: LiquidState,
 ) {
   LazyVerticalGrid(
+    horizontalArrangement = Arrangement.spacedBy(20.dp),
+    verticalArrangement = Arrangement.spacedBy(20.dp),
+    modifier = Modifier.padding(horizontal = 16.dp),
     columns = GridCells.Fixed(2)
   ) {
     item(
@@ -77,7 +78,7 @@ fun MainScreenContentState(
     ) {
       HeaderSection(state.headerSection)
     }
-    forecastSection(state.forecastSection, liquidState)
+    forecastSection(state.forecastSection)
   }
 }
 
@@ -85,7 +86,7 @@ fun MainScreenContentState(
 @Composable
 private fun Preview() {
   AppTheme {
-    MainScreenScreen(
+    MainScreenContent(
       state = MainScreenState.Content(
         headerSection = MainScreenSection.HeaderSection(
           localizedAddress = "Москва",
@@ -94,7 +95,7 @@ private fun Preview() {
         forecastSection = MainScreenSection.ForecastSection(
           forecast = Forecast(
             temperature = Temperature(
-              value = 8,
+              value = 18,
               sign = Temperature.Sign.PLUS
             ),
             feelsLikeTemperature = Temperature(
@@ -110,7 +111,7 @@ private fun Preview() {
             ),
             pressure = LabeledParameter(
               label = Res.string.mmHg,
-              value = 754
+              value = 7540
             )
           ).toUI()
         ),

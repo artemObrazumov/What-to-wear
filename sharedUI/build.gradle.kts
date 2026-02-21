@@ -36,7 +36,6 @@ kotlin {
       implementation(libs.compose.nav3)
       implementation(libs.kotlinx.serialization.json)
       implementation(libs.multiplatformSettings)
-      implementation(libs.liquid)
     }
 
     commonTest.dependencies {
