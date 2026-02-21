@@ -6,4 +6,5 @@
   <string name="pressure">Давление</string>
   <string name="mmHg">мм.рт.ст</string>
   <string name="mps">м/с</string>
+  <string name="sunny">Солнечно</string>
 </resources>

@@ -6,4 +6,6 @@ class Forecast(
   val wind: StringLabeledParameter,
   val humidity: PercentageParameter,
   val pressure: LabeledParameter,
+  val status: WeatherStatus,
+  val predictions: List<Prediction>,
 )

@@ -3,6 +3,7 @@ package quack.whattowear.design_system.containers
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -19,7 +20,8 @@ import quack.whattowear.theme.ShadowColor
 @Composable
 fun LiquidContainer(
   modifier: Modifier = Modifier,
-  content: @Composable () -> Unit
+  paddingValues: PaddingValues = PaddingValues(12.dp),
+  content: @Composable () -> Unit,
 ) {
   Box(
     modifier = modifier
@@ -38,7 +40,7 @@ fun LiquidContainer(
         brush = Brush.linearGradient(listOf(LiquidBorderEdge, LiquidBorderMiddle, LiquidBorderEdge)),
         shape = RoundedCornerShape(16.dp)
       )
-      .padding(12.dp)
+      .padding(paddingValues)
   ) {
     content()
   }

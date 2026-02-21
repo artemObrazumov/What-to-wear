@@ -24,7 +24,7 @@ fun HugeText(
     textAlign = textAlign,
     style = MaterialTheme.typography.headlineLarge.copy(
       fontWeight = fontWeight,
-      fontSize = 56.sp
+      fontSize = 48.sp
     ),
     fontFamily = fontFamily,
   )

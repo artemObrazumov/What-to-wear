@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
@@ -19,10 +18,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import quack.whattowear.feature.main_screen.impl.domain.models.Forecast
 import quack.whattowear.feature.main_screen.impl.domain.models.LabeledParameter
 import quack.whattowear.feature.main_screen.impl.domain.models.PercentageParameter
+import quack.whattowear.feature.main_screen.impl.domain.models.Prediction
 import quack.whattowear.feature.main_screen.impl.domain.models.StringLabeledParameter
 import quack.whattowear.feature.main_screen.impl.domain.models.Temperature
-import quack.whattowear.feature.main_screen.impl.ui.components.HeaderSection
+import quack.whattowear.feature.main_screen.impl.domain.models.WeatherStatus
 import quack.whattowear.feature.main_screen.impl.ui.components.forecastSection
+import quack.whattowear.feature.main_screen.impl.ui.components.headerSection
 import quack.whattowear.feature.main_screen.impl.ui.models.toUI
 import quack.whattowear.theme.AppTheme
 import whattowear.sharedui.generated.resources.Res
@@ -73,11 +74,7 @@ fun MainScreenContentState(
     modifier = Modifier.padding(horizontal = 16.dp),
     columns = GridCells.Fixed(2)
   ) {
-    item(
-      span = { GridItemSpan(2) }
-    ) {
-      HeaderSection(state.headerSection)
-    }
+    headerSection(state.headerSection)
     forecastSection(state.forecastSection)
   }
 }
@@ -112,7 +109,17 @@ private fun Preview() {
             pressure = LabeledParameter(
               label = Res.string.mmHg,
               value = 7540
-            )
+            ),
+            status = WeatherStatus.Sunny,
+            predictions = List(4) {
+              Prediction(
+                weatherStatus = WeatherStatus.Sunny,
+                temperature = Temperature(
+                  value = 18,
+                  sign = Temperature.Sign.PLUS
+                )
+              )
+            }
           ).toUI()
         ),
       ),

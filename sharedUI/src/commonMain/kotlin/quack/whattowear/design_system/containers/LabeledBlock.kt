@@ -28,14 +28,13 @@ fun LabeledBlock(
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
       BodyText(text = title, textAlign = TextAlign.Center)
-      Spacer(modifier = Modifier.weight(1f))
       Column(
         modifier = Modifier.fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
       ) {
-        Spacer(modifier = Modifier.weight(3f))
+        Spacer(modifier = Modifier.weight(1f))
         content()
-        Spacer(modifier = Modifier.weight(5f))
+        Spacer(modifier = Modifier.weight(1f))
       }
     }
   }
