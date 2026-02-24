@@ -1,5 +1,6 @@
 package quack.whattowear.feature.main_screen.impl.ui
 
+import quack.whattowear.feature.main_screen.impl.domain.models.ClothesAdvice
 import quack.whattowear.feature.main_screen.impl.ui.models.ForecastUI
 
 sealed interface MainScreenState {
@@ -8,6 +9,7 @@ sealed interface MainScreenState {
   class Content(
     val headerSection: MainScreenSection.HeaderSection,
     val forecastSection: MainScreenSection.ForecastSection,
+    val clothesSection: MainScreenSection.ClothesSection,
   ) : MainScreenState
 }
 
@@ -19,4 +21,6 @@ sealed interface MainScreenSection {
   ) : MainScreenSection
 
   class ForecastSection(val forecast: ForecastUI) : MainScreenSection
+
+  class ClothesSection(val clothes: ClothesAdvice) : MainScreenSection
 }

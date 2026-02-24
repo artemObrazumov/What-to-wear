@@ -10,4 +10,10 @@
   <string name="male">Мужской</string>
   <string name="female">Женский</string>
   <string name="gender">Пол</string>
+  <string name="headwear">Головной убор</string>
+  <string name="outerwear">Верхняя одежда</string>
+  <string name="footwear">Обувь</string>
+  <string name="upperBodyClothing">Верхняя часть тела</string>
+  <string name="lowerBodyClothing">Нижняя часть тела</string>
+  <string name="accessories">Аксессуары</string>
 </resources>

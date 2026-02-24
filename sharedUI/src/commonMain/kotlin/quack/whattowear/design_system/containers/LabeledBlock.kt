@@ -16,12 +16,13 @@ import quack.whattowear.design_system.text.BodyText
 @Composable
 fun LabeledBlock(
   title: String,
-  content: @Composable ColumnScope.() -> Unit
+  ratio: Float = 1f,
+  content: @Composable ColumnScope.() -> Unit,
 ) {
   LiquidContainer(
     modifier = Modifier
       .fillMaxWidth()
-      .aspectRatio(1f)
+      .aspectRatio(ratio)
   ) {
     Column(
       modifier = Modifier.fillMaxSize(),

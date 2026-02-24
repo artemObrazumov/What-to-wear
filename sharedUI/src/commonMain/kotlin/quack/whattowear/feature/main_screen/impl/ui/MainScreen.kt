@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import quack.whattowear.feature.main_screen.impl.domain.models.ClothesAdvice
 import quack.whattowear.feature.main_screen.impl.domain.models.Forecast
 import quack.whattowear.feature.main_screen.impl.domain.models.LabeledParameter
 import quack.whattowear.feature.main_screen.impl.domain.models.PercentageParameter
@@ -22,6 +23,7 @@ import quack.whattowear.feature.main_screen.impl.domain.models.Prediction
 import quack.whattowear.feature.main_screen.impl.domain.models.StringLabeledParameter
 import quack.whattowear.feature.main_screen.impl.domain.models.Temperature
 import quack.whattowear.feature.main_screen.impl.domain.models.WeatherStatus
+import quack.whattowear.feature.main_screen.impl.ui.components.clothesSection
 import quack.whattowear.feature.main_screen.impl.ui.components.forecastSection
 import quack.whattowear.feature.main_screen.impl.ui.components.genderSection
 import quack.whattowear.feature.main_screen.impl.ui.components.headerSection
@@ -78,6 +80,7 @@ fun MainScreenContentState(
     headerSection(state.headerSection)
     forecastSection(state.forecastSection)
     genderSection { }
+    clothesSection(state.clothesSection)
   }
 }
 
@@ -123,6 +126,16 @@ private fun Preview() {
               )
             }
           ).toUI()
+        ),
+        clothesSection = MainScreenSection.ClothesSection(
+          clothes = ClothesAdvice(
+            headwear = "Шапка",
+            outerwear = "Пальто",
+            footwear = "Ботинки",
+            upperBodyClothing = "Свитер",
+            lowerBodyClothing = "Джинсы",
+            accessories = "Шапка, Шарф"
+          )
         ),
       ),
       onAction = {}
