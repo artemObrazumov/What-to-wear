@@ -23,6 +23,7 @@ import quack.whattowear.feature.main_screen.impl.domain.models.StringLabeledPara
 import quack.whattowear.feature.main_screen.impl.domain.models.Temperature
 import quack.whattowear.feature.main_screen.impl.domain.models.WeatherStatus
 import quack.whattowear.feature.main_screen.impl.ui.components.forecastSection
+import quack.whattowear.feature.main_screen.impl.ui.components.genderSection
 import quack.whattowear.feature.main_screen.impl.ui.components.headerSection
 import quack.whattowear.feature.main_screen.impl.ui.models.toUI
 import quack.whattowear.theme.AppTheme
@@ -76,6 +77,7 @@ fun MainScreenContentState(
   ) {
     headerSection(state.headerSection)
     forecastSection(state.forecastSection)
+    genderSection { }
   }
 }
 

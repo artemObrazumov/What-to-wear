@@ -4,6 +4,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
@@ -14,7 +15,8 @@ fun BodyText(
   text: String,
   modifier: Modifier = Modifier,
   fontWeight: FontWeight = FontWeight.Normal,
-  textAlign: TextAlign = TextAlign.Start
+  textAlign: TextAlign = TextAlign.Start,
+  color: Color = Color.Unspecified
 ) {
   val fontFamily = montserratFontFamily()
 
@@ -28,5 +30,6 @@ fun BodyText(
     ),
     lineHeight = 24.sp,
     fontFamily = fontFamily,
+    color = color
   )
 }
