@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import org.koin.compose.koinInject
 import quack.whattowear.feature.main_screen.impl.domain.models.ClothesAdvice
 import quack.whattowear.feature.main_screen.impl.domain.models.Forecast
 import quack.whattowear.feature.main_screen.impl.domain.models.LabeledParameter
@@ -34,7 +34,7 @@ import whattowear.sharedui.generated.resources.mmHg
 
 @Composable
 fun MainScreen(
-  viewModel: MainScreenViewModel = viewModel()
+  viewModel: MainScreenViewModel = koinInject()
 ) {
   val state by viewModel.state.collectAsStateWithLifecycle()
 

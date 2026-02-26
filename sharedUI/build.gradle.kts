@@ -6,7 +6,6 @@ plugins {
   alias(libs.plugins.compose.multiplatform)
   alias(libs.plugins.android.kmp.library)
   alias(libs.plugins.kotlinx.serialization)
-  alias(libs.plugins.metro)
 }
 
 kotlin {
@@ -36,6 +35,8 @@ kotlin {
       implementation(libs.compose.nav3)
       implementation(libs.kotlinx.serialization.json)
       implementation(libs.multiplatformSettings)
+      api(libs.koin.core)
+      api(libs.koin.compose)
     }
 
     commonTest.dependencies {

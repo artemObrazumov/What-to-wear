@@ -3,6 +3,11 @@ import SharedUI
 
 @main
 struct ComposeApp: App {
+
+    init() {
+        KoinKt.doInitKoin()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView().ignoresSafeArea(.all)
