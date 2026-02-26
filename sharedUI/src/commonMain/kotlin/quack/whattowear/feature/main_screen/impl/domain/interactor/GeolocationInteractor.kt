@@ -9,4 +9,5 @@ interface GeolocationInteractor {
   val locationFlow: Flow<GeoPoint?>
 
   fun getPermission()
+  fun track()
 }

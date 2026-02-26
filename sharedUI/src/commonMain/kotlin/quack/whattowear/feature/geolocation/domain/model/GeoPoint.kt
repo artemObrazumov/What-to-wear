@@ -1,6 +1,6 @@
 package quack.whattowear.feature.geolocation.domain.model
 
-class GeoPoint(
+data class GeoPoint(
   val latitude: Double,
   val longitude: Double
 )

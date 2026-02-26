@@ -4,10 +4,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemGestures
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -35,6 +39,7 @@ import quack.whattowear.feature.main_screen.impl.ui.components.clothesSection
 import quack.whattowear.feature.main_screen.impl.ui.components.forecastSection
 import quack.whattowear.feature.main_screen.impl.ui.components.genderSection
 import quack.whattowear.feature.main_screen.impl.ui.components.headerSection
+import quack.whattowear.feature.main_screen.impl.ui.models.Gender
 import quack.whattowear.feature.main_screen.impl.ui.models.toUI
 import quack.whattowear.theme.AppTheme
 import whattowear.sharedui.generated.resources.Res
@@ -111,13 +116,20 @@ fun MainScreenContentState(
   LazyVerticalGrid(
     horizontalArrangement = Arrangement.spacedBy(20.dp),
     verticalArrangement = Arrangement.spacedBy(20.dp),
-    modifier = Modifier.padding(horizontal = 16.dp),
+    modifier = Modifier
+      .padding(horizontal = 16.dp),
     columns = GridCells.Fixed(2)
   ) {
+    item(span = { GridItemSpan(maxLineSpan) }) {
+      Spacer(modifier = Modifier.height(WindowInsets.systemGestures.asPaddingValues().calculateTopPadding()))
+    }
     headerSection(state.headerSection)
     forecastSection(state.forecastSection)
     genderSection { }
     clothesSection(state.clothesSection)
+    item(span = { GridItemSpan(maxLineSpan) }) {
+      Spacer(modifier = Modifier.height(WindowInsets.systemGestures.asPaddingValues().calculateBottomPadding()))
+    }
   }
 }
 
@@ -174,6 +186,7 @@ private fun Preview() {
             accessories = "Шапка, Шарф"
           )
         ),
+        gender = Gender.Male,
       ),
       onAction = {}
     )

@@ -2,6 +2,7 @@ package quack.whattowear.feature.main_screen.impl.ui
 
 import quack.whattowear.feature.main_screen.impl.domain.models.ClothesAdvice
 import quack.whattowear.feature.main_screen.impl.ui.models.ForecastUI
+import quack.whattowear.feature.main_screen.impl.ui.models.Gender
 
 sealed interface MainScreenState {
   object Loading : MainScreenState
@@ -11,6 +12,7 @@ sealed interface MainScreenState {
     val headerSection: MainScreenSection.HeaderSection,
     val forecastSection: MainScreenSection.ForecastSection,
     val clothesSection: MainScreenSection.ClothesSection,
+    val gender: Gender,
   ) : MainScreenState
 }
 

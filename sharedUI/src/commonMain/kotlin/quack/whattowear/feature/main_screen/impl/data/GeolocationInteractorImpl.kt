@@ -37,7 +37,6 @@ class GeolocationInteractorImpl(
   )
 
   override fun getPermission() {
-    trackingJob?.cancel()
     scope.launch {
       if (!_isPermissionGrantedFlow.value) {
         locationPermissionController.requirePermissionFor(Priority.Balanced)
@@ -45,9 +44,14 @@ class GeolocationInteractorImpl(
       }
 
       if (_isPermissionGrantedFlow.value) {
-        trackingJob = scope.launch { geolocator.track() }
+        track()
       }
     }
+  }
+
+  override fun track() {
+    trackingJob?.cancel()
+    trackingJob = scope.launch { geolocator.track() }
   }
 
   private fun updatePermissionStatus() {
