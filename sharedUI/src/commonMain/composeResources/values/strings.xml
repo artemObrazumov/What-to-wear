@@ -16,4 +16,6 @@
   <string name="upperBodyClothing">Верхняя часть тела</string>
   <string name="lowerBodyClothing">Нижняя часть тела</string>
   <string name="accessories">Аксессуары</string>
+  <string name="allow_geo">Предоставить геолокацию</string>
+  <string name="geo_required">Для работы приложения необходим доступ к геолокации. Нажмите на кнопку ниже, чтобы предоставить геолокацию</string>
 </resources>

@@ -2,6 +2,7 @@ package quack.whattowear.feature.main_screen.impl.ui.components
 
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -21,47 +22,59 @@ import whattowear.sharedui.generated.resources.upperBodyClothing
 fun LazyGridScope.clothesSection(
   data: MainScreenSection.ClothesSection,
 ) {
-  item(
-    span = { GridItemSpan(2) }
-  ) {
-    TitleText(text = stringResource(Res.string.gender), textAlign = TextAlign.Start)
-  }
-  item {
-    LabeledBlock(
-      title = stringResource(Res.string.outerwear),
-    ) {
-      HeaderTextBlock(data.clothes.outerwear)
+  when (data) {
+    is MainScreenSection.ClothesSection.Content -> {
+      item(
+        span = { GridItemSpan(2) }
+      ) {
+        TitleText(text = stringResource(Res.string.gender), textAlign = TextAlign.Start)
+      }
+      item {
+        LabeledBlock(
+          title = stringResource(Res.string.outerwear),
+        ) {
+          HeaderTextBlock(data.clothes.outerwear)
+        }
+      }
+      item {
+        LabeledBlock(
+          title = stringResource(Res.string.upperBodyClothing),
+        ) {
+          HeaderTextBlock(data.clothes.upperBodyClothing)
+        }
+      }
+      item {
+        LabeledBlock(
+          title = stringResource(Res.string.lowerBodyClothing),
+        ) {
+          HeaderTextBlock(data.clothes.lowerBodyClothing)
+        }
+      }
+      item {
+        LabeledBlock(
+          title = stringResource(Res.string.footwear),
+        ) {
+          HeaderTextBlock(data.clothes.footwear)
+        }
+      }
+      item(
+        span = { GridItemSpan(2) }
+      ) {
+        LabeledBlock(
+          title = stringResource(Res.string.accessories),
+          ratio = 2f
+        ) {
+          HeaderTextBlock(data.clothes.accessories)
+        }
+      }
     }
-  }
-  item {
-    LabeledBlock(
-      title = stringResource(Res.string.upperBodyClothing),
-    ) {
-      HeaderTextBlock(data.clothes.upperBodyClothing)
-    }
-  }
-  item {
-    LabeledBlock(
-      title = stringResource(Res.string.lowerBodyClothing),
-    ) {
-      HeaderTextBlock(data.clothes.lowerBodyClothing)
-    }
-  }
-  item {
-    LabeledBlock(
-      title = stringResource(Res.string.footwear),
-    ) {
-      HeaderTextBlock(data.clothes.footwear)
-    }
-  }
-  item(
-    span = { GridItemSpan(2) }
-  ) {
-    LabeledBlock(
-      title = stringResource(Res.string.accessories),
-      ratio = 2f
-    ) {
-      HeaderTextBlock(data.clothes.accessories)
+
+    MainScreenSection.ClothesSection.Loading -> {
+      item(
+        span = { GridItemSpan(2) }
+      ) {
+        CircularProgressIndicator()
+      }
     }
   }
 }

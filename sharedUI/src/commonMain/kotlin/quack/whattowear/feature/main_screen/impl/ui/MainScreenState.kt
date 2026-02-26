@@ -5,6 +5,7 @@ import quack.whattowear.feature.main_screen.impl.ui.models.ForecastUI
 
 sealed interface MainScreenState {
   object Loading : MainScreenState
+  object GeolocationAccessRequired : MainScreenState
   class Error(val message: String) : MainScreenState
   class Content(
     val headerSection: MainScreenSection.HeaderSection,
@@ -22,5 +23,8 @@ sealed interface MainScreenSection {
 
   class ForecastSection(val forecast: ForecastUI) : MainScreenSection
 
-  class ClothesSection(val clothes: ClothesAdvice) : MainScreenSection
+  sealed interface ClothesSection : MainScreenSection {
+    class Content(val clothes: ClothesAdvice) : ClothesSection
+    object Loading : ClothesSection
+  }
 }
