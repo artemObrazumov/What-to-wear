@@ -13,10 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,7 +31,7 @@ import whattowear.sharedui.generated.resources.gender
 import whattowear.sharedui.generated.resources.male
 
 fun LazyGridScope.genderSection(
-  //selectedGender: Gender,
+  selectedGender: Gender,
   onGenderSelected: (Gender) -> Unit
 ) {
   item(
@@ -47,8 +43,6 @@ fun LazyGridScope.genderSection(
         paddingValues = PaddingValues(vertical = 10.dp, horizontal = 16.dp),
         shape = RoundedCornerShape(30.dp),
       ) {
-        // TODO: pass selected from viewModel
-        var selectedIndex by remember { mutableStateOf(Gender.Male) }
         val genders = mapOf(
           stringResource(Res.string.male) to Gender.Male,
           stringResource(Res.string.female) to Gender.Female,
@@ -60,7 +54,7 @@ fun LazyGridScope.genderSection(
           verticalAlignment = Alignment.CenterVertically
         ) {
           genders.forEach { (alias, gender) ->
-            val isSelected = selectedIndex == gender
+            val isSelected = selectedGender == gender
             Box(
               modifier = Modifier
                 .weight(1f)
@@ -71,7 +65,7 @@ fun LazyGridScope.genderSection(
                 .clickable(
                   interactionSource = MutableInteractionSource(),
                   indication = null,
-                ) { selectedIndex = gender }
+                ) { onGenderSelected(gender) }
                 .padding(16.dp),
               contentAlignment = Alignment.Center
             ) {

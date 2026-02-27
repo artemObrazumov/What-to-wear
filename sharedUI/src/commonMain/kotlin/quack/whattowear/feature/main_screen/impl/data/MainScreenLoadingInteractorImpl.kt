@@ -17,7 +17,8 @@ class MainScreenLoadingInteractorImpl(
   private val api: WeatherApi,
   private val scope: CoroutineScope
 ) : MainScreenLoadingInteractor {
-  private val _addressAndForecastFlow: MutableStateFlow<AddressAndForecast?> = MutableStateFlow(null)
+  private val _addressAndForecastFlow: MutableStateFlow<AddressAndForecast?> =
+    MutableStateFlow(null)
   override val addressAndForecastFlow: StateFlow<AddressAndForecast?> = _addressAndForecastFlow
 
   private val _clothesAdviceFlow: MutableStateFlow<ClothesAdvice?> = MutableStateFlow(null)
@@ -26,14 +27,20 @@ class MainScreenLoadingInteractorImpl(
   override fun loadAddressAndForecast(location: GeoPoint) {
     scope.launch {
       retry(3) {
-        val response = api.getWeather(location)
-        _addressAndForecastFlow.value = response.toDomain()
+        val weather = api.getWeather(location)
+        val forecast = api.getForecast(location)
+        _addressAndForecastFlow.value = weather.toDomain(forecast)
       }
     }
   }
 
   override fun loadClothesAdvice(location: GeoPoint, gender: Gender) {
-
+    scope.launch {
+      retry(3) {
+        val clothes = api.getAiClothes(location, gender.name.lowercase())
+        _clothesAdviceFlow.value = clothes.toDomain()
+      }
+    }
   }
 
   private suspend fun retry(

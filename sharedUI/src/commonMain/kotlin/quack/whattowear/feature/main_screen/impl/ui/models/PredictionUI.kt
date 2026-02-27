@@ -10,7 +10,7 @@ class PredictionUI(
 
 fun Prediction.toUi(): PredictionUI {
   return PredictionUI(
-    timeLabel = "20:00",
+    timeLabel = time,
     weatherStatus = weatherStatus.toWeatherStatusUI(),
     temperatureString = temperature.toString()
   )

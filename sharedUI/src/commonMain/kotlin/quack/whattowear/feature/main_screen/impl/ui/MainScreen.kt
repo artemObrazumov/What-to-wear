@@ -66,7 +66,7 @@ fun MainScreenContent(
 ) {
   when (state) {
     is MainScreenState.Content -> {
-      MainScreenContentState(state)
+      MainScreenContentState(state, onAction)
     }
 
     is MainScreenState.Error -> {}
@@ -112,6 +112,7 @@ fun GeolocationRequiredState(
 @Composable
 fun MainScreenContentState(
   state: MainScreenState.Content,
+  onAction: (MainScreenAction) -> Unit,
 ) {
   LazyVerticalGrid(
     horizontalArrangement = Arrangement.spacedBy(20.dp),
@@ -125,7 +126,10 @@ fun MainScreenContentState(
     }
     headerSection(state.headerSection)
     forecastSection(state.forecastSection)
-    genderSection { }
+    genderSection(
+      selectedGender = state.gender,
+      onGenderSelected = { gender -> onAction(MainScreenAction.GenderSelected(gender)) }
+    )
     clothesSection(state.clothesSection)
     item(span = { GridItemSpan(maxLineSpan) }) {
       Spacer(modifier = Modifier.height(WindowInsets.systemGestures.asPaddingValues().calculateBottomPadding()))
@@ -171,7 +175,8 @@ private fun Preview() {
                 temperature = Temperature(
                   value = 18,
                   sign = Temperature.Sign.PLUS
-                )
+                ),
+                time = "20:00"
               )
             }
           ).toUI()

@@ -95,6 +95,10 @@ class MainScreenViewModel(
         geoLocationInteractor.getPermission()
       }
 
+      is MainScreenAction.GenderSelected -> {
+        genderFlow.value = action.gender
+      }
+
       else -> TODO("Handle actions")
     }
   }

@@ -1,7 +1,7 @@
 package quack.whattowear.feature.main_screen.impl.domain.models
 
 class Prediction(
-  // TODO: add time field
+  val time: String,
   val weatherStatus: WeatherStatus,
   val temperature: Temperature,
 )
