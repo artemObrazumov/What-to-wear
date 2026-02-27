@@ -11,7 +11,7 @@ class ForecastUI(
   val humidity: String,
   val pressure: String,
   val pressureMeasurement: StringResource,
-  val weatherStatus: WeatherStatusUI,
+  val weatherStatus: WeatherStatusUIData,
   val predictions: List<PredictionUI>,
 )
 
@@ -23,6 +23,6 @@ fun Forecast.toUI(): ForecastUI = ForecastUI(
   humidity = humidity.toString(),
   pressure = pressure.value.toString(),
   pressureMeasurement = pressure.label,
-  weatherStatus = status.toWeatherStatusUI(),
-  predictions = predictions.map { it.toUi() }
+  weatherStatus = status.toWeatherStatusUIData(),
+  predictions = predictions.map { it.toPredictionUI() }
 )

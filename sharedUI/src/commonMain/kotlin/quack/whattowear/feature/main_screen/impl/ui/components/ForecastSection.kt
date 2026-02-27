@@ -6,8 +6,8 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.style.TextAlign
-import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import quack.whattowear.design_system.containers.LabeledBlock
@@ -31,7 +31,7 @@ fun LazyGridScope.forecastSection(
       title = stringResource(forecast.weatherStatus.label),
     ) {
       PictureBlock(
-        icon = forecast.weatherStatus.icon,
+        icon = painterResource(forecast.weatherStatus.icon),
         contentDescription = stringResource(forecast.weatherStatus.label)
       )
     }
@@ -84,12 +84,12 @@ fun LazyGridScope.forecastSection(
 
 @Composable
 private fun PictureBlock(
-  icon: DrawableResource,
+  icon: Painter,
   contentDescription: String? = null
 ) {
   Image(
     modifier = Modifier.fillMaxSize(),
-    painter = painterResource(icon),
+    painter = icon,
     contentDescription = contentDescription
   )
 }

@@ -10,6 +10,7 @@ import quack.whattowear.feature.main_screen.impl.domain.models.Prediction
 import quack.whattowear.feature.main_screen.impl.domain.models.StringLabeledParameter
 import quack.whattowear.feature.main_screen.impl.domain.models.Temperature
 import quack.whattowear.feature.main_screen.impl.domain.models.WeatherStatus
+import quack.whattowear.feature.main_screen.impl.domain.models.toWeatherStatus
 import quack.whattowear.network.models.AddressDto
 import quack.whattowear.network.models.AiResponse
 import quack.whattowear.network.models.ForecastDto
@@ -48,7 +49,7 @@ fun ForecastDto.toDomain(predictions: List<Prediction>): Forecast {
     wind = wind.toDomain(),
     humidity = PercentageParameter(humidity),
     pressure = LabeledParameter(Res.string.mmHg, pressure),
-    status = WeatherStatus.Sunny,
+    status = WeatherStatus.SUNNY,
     predictions = predictions
   )
 }
@@ -72,7 +73,7 @@ fun ForecastItemDto.toDomain(): Prediction {
   val temperatureValue = temperature.toInt()
   val timeOnly = time.split(" ")[1]
   return Prediction(
-    weatherStatus = WeatherStatus.Sunny,
+    weatherStatus = status.toWeatherStatus(),
     temperature = Temperature(
       value = temperatureValue.absoluteValue,
       sign = temperatureValue.toSign()
@@ -80,6 +81,7 @@ fun ForecastItemDto.toDomain(): Prediction {
     time = timeOnly,
   )
 }
+
 fun WindDto.toDomain(): StringLabeledParameter {
   return StringLabeledParameter(
     label = direction,

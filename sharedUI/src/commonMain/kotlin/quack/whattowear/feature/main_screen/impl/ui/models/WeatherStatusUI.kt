@@ -4,22 +4,41 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import quack.whattowear.feature.main_screen.impl.domain.models.WeatherStatus
 import whattowear.sharedui.generated.resources.Res
+import whattowear.sharedui.generated.resources.cloudy
+import whattowear.sharedui.generated.resources.rain
+import whattowear.sharedui.generated.resources.snow
 import whattowear.sharedui.generated.resources.sunny
 
-class WeatherStatusUI(
-  val label: StringResource,
+data class WeatherStatusUIData(
   val icon: DrawableResource,
-) {
-  companion object {
-    val Sunny = WeatherStatusUI(
-      label = Res.string.sunny,
-      icon = Res.drawable.sunny,
-    )
-  }
-}
+  val label: StringResource,
+)
 
-fun WeatherStatus.toWeatherStatusUI(): WeatherStatusUI {
+fun WeatherStatus.toWeatherStatusUIData(): WeatherStatusUIData {
   return when (this) {
-    WeatherStatus.Sunny -> WeatherStatusUI.Sunny
+    WeatherStatus.SUNNY -> WeatherStatusUIData(
+      icon = Res.drawable.sunny,
+      label = this.label
+    )
+
+    WeatherStatus.CLOUDY -> WeatherStatusUIData(
+      icon = Res.drawable.cloudy,
+      label = this.label
+    )
+
+    WeatherStatus.OVERCAST -> WeatherStatusUIData(
+      icon = Res.drawable.cloudy,
+      label = this.label
+    )
+
+    WeatherStatus.RAIN -> WeatherStatusUIData(
+      icon = Res.drawable.rain,
+      label = this.label
+    )
+
+    WeatherStatus.SNOW -> WeatherStatusUIData(
+      icon = Res.drawable.snow,
+      label = this.label
+    )
   }
 }

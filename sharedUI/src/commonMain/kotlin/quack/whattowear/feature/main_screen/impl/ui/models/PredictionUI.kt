@@ -2,16 +2,16 @@ package quack.whattowear.feature.main_screen.impl.ui.models
 
 import quack.whattowear.feature.main_screen.impl.domain.models.Prediction
 
-class PredictionUI(
-  val timeLabel: String,
-  val weatherStatus: WeatherStatusUI,
-  val temperatureString: String,
+data class PredictionUI(
+  val time: String,
+  val weatherStatus: WeatherStatusUIData,
+  val temperature: String,
 )
 
-fun Prediction.toUi(): PredictionUI {
+fun Prediction.toPredictionUI(): PredictionUI {
   return PredictionUI(
-    timeLabel = time,
-    weatherStatus = weatherStatus.toWeatherStatusUI(),
-    temperatureString = temperature.toString()
+    time = time,
+    weatherStatus = weatherStatus.toWeatherStatusUIData(),
+    temperature = temperature.value.toString(),
   )
 }

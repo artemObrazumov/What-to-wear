@@ -72,12 +72,12 @@ fun ForecastPredictionItem(
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.spacedBy(5.dp, alignment = Alignment.CenterVertically)
   ) {
-    BodyText(prediction.timeLabel)
+    BodyText(prediction.time)
     Image(
       modifier = Modifier.size(56.dp),
       painter = painterResource(prediction.weatherStatus.icon),
       contentDescription = stringResource(prediction.weatherStatus.label)
     )
-    BodyText(prediction.temperatureString, fontWeight = FontWeight.Medium)
+    BodyText(prediction.temperature, fontWeight = FontWeight.Medium)
   }
 }

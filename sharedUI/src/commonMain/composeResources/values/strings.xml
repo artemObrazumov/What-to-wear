@@ -7,6 +7,10 @@
   <string name="mmHg">мм.рт.ст</string>
   <string name="mps">м/с</string>
   <string name="sunny">Солнечно</string>
+  <string name="cloudy">Облачно</string>
+  <string name="overcast">Пасмурно</string>
+  <string name="rain">Дождь</string>
+  <string name="snow">Снег</string>
   <string name="male">Мужской</string>
   <string name="female">Женский</string>
   <string name="gender">Пол</string>

@@ -168,10 +168,10 @@ private fun Preview() {
               label = Res.string.mmHg,
               value = 7540
             ),
-            status = WeatherStatus.Sunny,
+            status = WeatherStatus.SUNNY,
             predictions = List(4) {
               Prediction(
-                weatherStatus = WeatherStatus.Sunny,
+                weatherStatus = WeatherStatus.SUNNY,
                 temperature = Temperature(
                   value = 18,
                   sign = Temperature.Sign.PLUS
