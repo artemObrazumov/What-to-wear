@@ -4,5 +4,29 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Приложению нужен доступ к вашей геолокации для отображения погоды в вашем текущем местоположении</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Приложению нужен доступ к вашей геолокации для отображения погоды в вашем текущем местоположении</string>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<dict>
+		<key>WeatherPreciseLocation</key>
+		<string>Для точного прогноза погоды в вашем местоположении</string>
+	</dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>185.135.82.149</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
 </dict>
 </plist>

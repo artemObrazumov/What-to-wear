@@ -34,6 +34,7 @@ kotlin {
       implementation(libs.androidx.lifecycle.runtime)
       implementation(libs.compose.nav3)
       implementation(libs.kotlinx.serialization.json)
+      implementation(libs.kotlinx.datetime)
       implementation(libs.multiplatformSettings)
       implementation(libs.compass.geolocation)
       implementation(libs.compass.geolocation.mobile)

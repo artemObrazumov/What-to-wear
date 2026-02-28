@@ -19,15 +19,18 @@ import quack.whattowear.feature.main_screen.impl.domain.interactor.MainScreenLoa
 import quack.whattowear.feature.main_screen.impl.ui.MainScreenViewModel
 import quack.whattowear.network.service.KtorWeatherApi
 import quack.whattowear.network.service.WeatherApi
+import quack.whattowear.util.CurrentDateProvider
 
 val appModule = module {
   factory {
     MainScreenViewModel(
       geoLocationInteractor = get(),
       mainScreenLoadingInteractor = get(),
+      currentDateProvider = get(),
     )
   }
   single { CoroutineScope(Dispatchers.Default + SupervisorJob()) }
+  single { CurrentDateProvider() }
   single<GeolocationInteractor> {
     GeolocationInteractorImpl(
       geolocator = MobileGeolocator(),

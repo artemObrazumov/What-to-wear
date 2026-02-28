@@ -16,10 +16,12 @@ import quack.whattowear.feature.main_screen.impl.domain.interactor.GeolocationIn
 import quack.whattowear.feature.main_screen.impl.domain.interactor.MainScreenLoadingInteractor
 import quack.whattowear.feature.main_screen.impl.ui.models.Gender
 import quack.whattowear.feature.main_screen.impl.ui.models.toUI
+import quack.whattowear.util.CurrentDateProvider
 
 class MainScreenViewModel(
   private val geoLocationInteractor: GeolocationInteractor,
   private val mainScreenLoadingInteractor: MainScreenLoadingInteractor,
+  private val currentDateProvider: CurrentDateProvider,
 ) : ViewModel() {
 
   private val genderFlow: MutableStateFlow<Gender> = MutableStateFlow(Gender.Male)
@@ -36,7 +38,7 @@ class MainScreenViewModel(
     if (addressAndForecast != null) {
       val headerSection = MainScreenSection.HeaderSection(
         localizedAddress = addressAndForecast.address.localizedAddress,
-        formattedDate = "today"
+        formattedDate = currentDateProvider.getCurrentDateFormatted()
       )
       val forecastSection = MainScreenSection.ForecastSection(
         forecast = addressAndForecast.forecast.toUI()
