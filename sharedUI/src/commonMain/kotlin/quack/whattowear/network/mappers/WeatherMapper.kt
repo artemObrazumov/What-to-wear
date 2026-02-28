@@ -71,14 +71,13 @@ fun AiResponse.toDomain(): ClothesAdvice {
 
 fun ForecastItemDto.toDomain(): Prediction {
   val temperatureValue = temperature.toInt()
-  val timeOnly = time.split(" ")[1]
   return Prediction(
     weatherStatus = status.toWeatherStatus(),
     temperature = Temperature(
       value = temperatureValue.absoluteValue,
       sign = temperatureValue.toSign()
     ),
-    time = timeOnly,
+    time = time,
   )
 }
 

@@ -5,6 +5,7 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import quack.whattowear.feature.geolocation.domain.model.GeoPoint
+import quack.whattowear.feature.main_screen.impl.ui.models.Gender
 import quack.whattowear.network.models.AiResponse
 import quack.whattowear.network.models.ForecastResponse
 import quack.whattowear.network.models.WeatherResponse
@@ -26,11 +27,15 @@ class KtorWeatherApi(private val client: HttpClient) : WeatherApi {
     return result.body()
   }
 
-  override suspend fun getAiClothes(location: GeoPoint, gender: String): AiResponse {
+  override suspend fun getAiClothes(location: GeoPoint, gender: Gender): AiResponse {
     val result = client.get("$API_URL/ai") {
       parameter("latitude", location.latitude)
       parameter("longitude", location.longitude)
-      parameter("gender", gender)
+      val genderChar = when (gender) {
+        Gender.Male -> 'm'
+        Gender.Female -> 'f'
+      }
+      parameter("gender", genderChar)
     }
     return result.body()
   }

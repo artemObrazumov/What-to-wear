@@ -1,6 +1,7 @@
 package quack.whattowear.feature.main_screen.impl.data
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,8 +18,7 @@ class MainScreenLoadingInteractorImpl(
   private val api: WeatherApi,
   private val scope: CoroutineScope
 ) : MainScreenLoadingInteractor {
-  private val _addressAndForecastFlow: MutableStateFlow<AddressAndForecast?> =
-    MutableStateFlow(null)
+  private val _addressAndForecastFlow: MutableStateFlow<AddressAndForecast?> = MutableStateFlow(null)
   override val addressAndForecastFlow: StateFlow<AddressAndForecast?> = _addressAndForecastFlow
 
   private val _clothesAdviceFlow: MutableStateFlow<ClothesAdvice?> = MutableStateFlow(null)
@@ -27,17 +27,18 @@ class MainScreenLoadingInteractorImpl(
   override fun loadAddressAndForecast(location: GeoPoint) {
     scope.launch {
       retry(3) {
-        val weather = api.getWeather(location)
-        val forecast = api.getForecast(location)
-        _addressAndForecastFlow.value = weather.toDomain(forecast)
+        val weather = async { api.getWeather(location) }
+        val forecast = async { api.getForecast(location) }
+        _addressAndForecastFlow.value = weather.await().toDomain(forecast.await())
       }
     }
   }
 
   override fun loadClothesAdvice(location: GeoPoint, gender: Gender) {
     scope.launch {
+      _clothesAdviceFlow.value = null
       retry(3) {
-        val clothes = api.getAiClothes(location, gender.name.lowercase())
+        val clothes = api.getAiClothes(location, gender)
         _clothesAdviceFlow.value = clothes.toDomain()
       }
     }

@@ -12,6 +12,6 @@ fun Prediction.toPredictionUI(): PredictionUI {
   return PredictionUI(
     time = time,
     weatherStatus = weatherStatus.toWeatherStatusUIData(),
-    temperature = temperature.value.toString(),
+    temperature = temperature.toString(),
   )
 }
